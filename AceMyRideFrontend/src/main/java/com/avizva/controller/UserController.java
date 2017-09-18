@@ -32,6 +32,7 @@ public class UserController {
 	@Autowired
 	private MailService mailService;
 
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -45,13 +46,19 @@ public class UserController {
 		return new ModelAndView("userProfile");
 	}
 	
-	
+
 	@RequestMapping(value="/submitUpdate", method = RequestMethod.POST)
 	public ModelAndView submitUpdate(HttpSession session,@ModelAttribute User user) {
 		User updatedUser=userService.updateUser(user);
 		
 		session.setAttribute("user", updatedUser);
 		return new ModelAndView("userProfile");
+	}
+
+
+	@RequestMapping("/registerUser")
+	public ModelAndView showRegister() {
+		return new ModelAndView("register");
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -108,7 +115,6 @@ public class UserController {
 		else
 		{
 			int id=(Integer) session.getAttribute("userId");
-			System.out.println(id);
 			boolean flag=userService.deactivateUser(id);
 			if (!flag) {
 				return new ModelAndView("error");
@@ -117,6 +123,52 @@ public class UserController {
 				return new ModelAndView("redirect:/logout");
 		}
 		
+	}
+	
+	@RequestMapping(value = "/submitUpdatePassword")
+	public ModelAndView updatePassword(@RequestParam String oldPassword, @RequestParam String newPassword,
+			HttpSession session)
+	{
+		String msg = null;
+		if(session.getAttribute("isLoggedIn")==null)
+		{
+			return new ModelAndView("redirect:/login");
+		}
+		else
+		{
+			int id = (Integer) session.getAttribute("userId");
+			String message = userService.changePassword(oldPassword, newPassword, id);
+			return new ModelAndView("redirect:/profile", msg, message);
+		}
+		
+	}
+
+	@RequestMapping(value = "/submitUpdate")
+	public ModelAndView update(@Valid @ModelAttribute User updatedUser, HttpSession session) {
+		if (session.getAttribute("isLoggedIn") == null) {
+			return new ModelAndView("redirect:/login");
+		} else {
+			int id = (Integer) session.getAttribute("userId");
+			updatedUser = userService.updateUser(updatedUser, id);
+			return new ModelAndView("redirect:/profile");
+		}
+
+	}
+
+	@RequestMapping(value = "/viewById")
+	public ModelAndView view(HttpSession session) {
+		if (session.getAttribute("isLoggedIn") == null) {
+			return new ModelAndView("redirect:/login");
+		} else {
+			int id = (Integer) session.getAttribute("userId");
+
+			User viewUser = userService.getUser(id);
+			if (viewUser == null) {
+				return new ModelAndView("error");
+			} else
+				return new ModelAndView("redirect:/view").addObject("user", viewUser);
+		}
+
 	}
 
 }

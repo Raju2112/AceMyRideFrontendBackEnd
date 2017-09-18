@@ -31,6 +31,9 @@ public interface UserService {
 	 */
 	public User updateUser(User user);
 
+	public User updateUser(User user, int id);
+
+
 	/**
 	 * Calls the dao to delete the user from database
 	 * 
@@ -73,7 +76,7 @@ public interface UserService {
 	 *            id of the user
 	 * @param securityQuestionId
 	 *            id of the security question that the user entered while
-	 *            registring
+	 *            registering
 	 * @param securityAnswer
 	 *            answer to the said security question
 	 * @param password
@@ -82,5 +85,9 @@ public interface UserService {
 	 */
 	public User updateUserPasswordWithForgot(int userId, int securityQuestionId, String securityAnswer,
 			String password);
+
+	public User getUserWithAddresses(int id);
+
+	public String changePassword(String oldPassword, String newPassword, int id);
 
 }

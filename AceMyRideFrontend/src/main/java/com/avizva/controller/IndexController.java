@@ -42,6 +42,8 @@ public class IndexController {
 	 * 
 	 * @return
 	 */
+
+
 	@RequestMapping("/contactUs")
 	public ModelAndView showContactUs() {
 		return new ModelAndView("contactUs");
@@ -57,14 +59,16 @@ public class IndexController {
 		return new ModelAndView("login").addObject("securityQuestions", SecurityQuestions.securityQuestions);
 	}
 	
+
 	/**
 	 * Method to return profile page
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/profile")
-	public ModelAndView showProfile() {
-		return new ModelAndView("profile");
+
+	@RequestMapping("/view")
+	public ModelAndView show() {
+		return new ModelAndView("view");
 	}
 
 	/**

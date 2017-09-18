@@ -54,7 +54,7 @@ public class LoginController {
 		session.setAttribute("userEmail", user.getEmail());
 		session.setAttribute("userName", user.getName());
 		session.setAttribute("userContact", user.getContact());
-//		session.setAttribute("userRole", user.getUserType());
+		session.setAttribute("userRole", user.getUserType());
 
 	}
 	
