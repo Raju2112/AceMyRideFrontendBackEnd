@@ -17,11 +17,15 @@ public class CategoryServiceImpl implements CategoryService {
 	private CategoryDao categoryDao;
 	
 	public Category saveCategory(Category category) {
+		category.setDescription(category.getDescription().trim());
+		category.setEnabled(true);
 		Category savedCategory=categoryDao.save(category);
 		return savedCategory;
 	}
 
 	public Category updateCategory(Category category) {
+		category.setDescription(category.getDescription().trim());
+		category.setEnabled(true);
 		Category updatedCategory=categoryDao.update(category);
 		return updatedCategory;
 	}

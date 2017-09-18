@@ -12,4 +12,20 @@ function initMap() {
         });
       }
 
-
+    function loadVerticalMenu(){
+      verticalMenuItems.forEach(function(item){
+        $('.vertical-menu ul').append('<li data-target="'+item.target+'">'+item.value+'</li>')
+      });
+    }
+    function changeActiveItem(item){
+      $('.v-active').removeClass('v-active');
+      $('[data-target='+item+']').addClass('v-active');
+    }
+    $(document).ready(function(){
+      loadVerticalMenu();
+      changeActiveItem(defaultVerticalMenuItem);
+      $('.vertical-menu ul li').click(function(event) {
+        var target=$(event.target).attr('data-target');
+        changeActiveItem(target);
+      });
+    });

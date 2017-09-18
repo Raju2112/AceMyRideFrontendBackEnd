@@ -27,7 +27,7 @@ public class Category {
 	@Column(name = "created_at", columnDefinition = "datetime default CURRENT_TIMESTAMP", updatable = false)
 	private Date createdAt;
 	
-	@Column(columnDefinition = "boolean default true", insertable = false)
+	@Column(columnDefinition = "boolean default true")
 	private Boolean enabled;
 
 	public int getId() {
@@ -76,6 +76,12 @@ public class Category {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", categoryId=" + categoryId + ", name=" + name + ", description=" + description
+				+ ", createdAt=" + createdAt + ", enabled=" + enabled + "]";
 	}
 	
 	

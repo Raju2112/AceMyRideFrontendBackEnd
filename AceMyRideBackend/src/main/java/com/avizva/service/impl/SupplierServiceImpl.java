@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.avizva.dao.SupplierDao;
 import com.avizva.model.Supplier;
-import com.avizva.model.Supplier;
 import com.avizva.service.SupplierService;
 
 @Service
@@ -18,11 +17,15 @@ public class SupplierServiceImpl implements SupplierService {
 	private SupplierDao supplierDao;
 	
 	public Supplier saveSupplier(Supplier supplier) {
+		supplier.setEnabled(true);
+		supplier.setDescription(supplier.getDescription().trim());
 		Supplier savedSupplier=supplierDao.save(supplier);
 		return savedSupplier;
 	}
 
 	public Supplier updateSupplier(Supplier supplier) {
+		supplier.setEnabled(true);
+		supplier.setDescription(supplier.getDescription().trim());
 		Supplier updatedSupplier=supplierDao.update(supplier);
 		return updatedSupplier;
 	}
@@ -47,5 +50,6 @@ public class SupplierServiceImpl implements SupplierService {
 		List<Supplier> completeList=supplierDao.viewAll();
 		return completeList.stream().filter(supplier -> supplier.isEnabled()).collect(Collectors.toList());
 	}
+
 
 }

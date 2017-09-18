@@ -1,7 +1,5 @@
 package com.avizva.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +23,6 @@ public class AdminController {
 	
 	@RequestMapping(value = "/addCategory", method = RequestMethod.POST)
 	public ModelAndView addCategory(@ModelAttribute Category category) {
-		
 		Category savedCategory = categoryService.saveCategory(category);
 		if (savedCategory == null) {
 			return new ModelAndView("error");
@@ -36,7 +33,6 @@ public class AdminController {
 	
 	@RequestMapping(value = "/updateCategory", method = RequestMethod.POST)
 	public ModelAndView updateCategory(@ModelAttribute Category category) {
-		
 		Category updatedCategory = categoryService.updateCategory(category);
 		if (updatedCategory == null) {
 			return new ModelAndView("error");
@@ -105,7 +101,8 @@ public class AdminController {
 	@RequestMapping(value="/adminPage")
 	public ModelAndView callAdmin(){
 		
-	return new ModelAndView("adminPanel").addObject("listSuppliers",supplierService.getAllSuppliers()).addObject("listCategories",categoryService.getAllCategories());
+		return new ModelAndView("adminPanel").addObject("listSuppliers", supplierService.getAllSuppliers())
+				.addObject("listCategories", categoryService.getAllCategories());
 	}
 
 }
