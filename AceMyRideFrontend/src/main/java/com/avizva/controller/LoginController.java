@@ -45,7 +45,8 @@ public class LoginController {
 			return new ModelAndView("loginError");
 
 	}
-	
+
+
 	private void setUserDetails(User user,HttpSession session){
 		session.setAttribute("isLoggedIn", true);
 		session.setAttribute("enabled", user.isEnabled());

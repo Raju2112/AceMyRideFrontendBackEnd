@@ -94,7 +94,6 @@ public class AdminController {
 	@RequestMapping(value = "/viewSuppliers", method = RequestMethod.POST)
 	public ModelAndView viewSuppliers() {
 	
-		
 		return new ModelAndView("redirect:/adminPage");
 	}	
 	

@@ -93,7 +93,8 @@
 		</div>
 		<div class="content-item" data-target="manage">This is address</div>
 		<div class="content-item" data-target="order">This is orders</div>
-		<div class="content-item" data-target="payment">This is Payment</div>
+		<div class="content-item" data-target="payment">This is Payment <a href="adminLogin">Admin Login</a></div>
+		<div class="content-item" data-target="deactivate">This is deactivation page</div>
 	</div>
 	<script type="text/javascript">
 		$(document).ready(

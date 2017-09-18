@@ -1,5 +1,9 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +47,7 @@
 					<li><a>Categories<span class="arrow">&#9660;</span></a>
 							<ul class="sub-menu">
 								<li><a>Category 1</a></li>
-								<li><a>Categoru 2</a></li>
+								<li><a>Category 2</a></li>
 							</ul>
 					</li>
 					<li class="active"><a href="./">Home</a></li>
@@ -60,4 +64,4 @@
 				</ul>
 			</nav>
 		</div>
-	</div>
+

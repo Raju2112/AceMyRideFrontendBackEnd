@@ -253,6 +253,7 @@
 		</div>
 	</div>
 
+<a href="profile">Logout</a>
 
 
 </div>
