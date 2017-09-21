@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.avizva.dao.AddressDao;
 import com.avizva.model.Address;
@@ -20,8 +21,10 @@ public class AddressServiceImpl implements AddressService {
 	private AddressDao addressDao;
 
 	@Override
+	@Transactional
 	public Address saveAddress(Address address) {
 		LOGGER.info("Saving address");
+		System.out.println(address);
 		return addressDao.save(address);
 	}
 

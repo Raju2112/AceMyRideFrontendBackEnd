@@ -1,5 +1,6 @@
 package com.avizva.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 
 /**
  * Address model class
@@ -102,5 +104,13 @@ public class Address {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", pin=" + pin + ", country=" + country + ", city=" + city + ", address=" + address
+				+ ", userId=" + userId + ", active=" + active + "]";
+	}
+	
+	
 
 }

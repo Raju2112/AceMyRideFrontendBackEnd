@@ -28,10 +28,18 @@
         </td>
         <td data-th="Price" class="price">&#8377; {{cartItem.product.price}}</td>
         <td data-th="Quantity">
+        	<div>
           <form action="updateCartItem" method="post" data-cart-item-id="{{cartItem.id}}">
+          
             <input type="hidden" name="id" value="{{cartItem.id}}">
-            <input type="number" name="quantity" value="{{cartItem.quantity}}" min="0" max="{{cartItem.quantity + cartItem.product.inStock}}" class="form-control">
+            <div class="form-group">
+            <input type="number" name="quantity" value="{{cartItem.quantity}}" min="0" max="{{cartItem.product.inStock}}" class="form-control">
+          	</div>
           </form>
+          </div>
+          <div class="text-muted">
+          	Available:{{cartItem.product.inStock}}
+          </div>
         </td>
         <td data-th="Subtotal" class="text-center price">&#8377; {{cartItem.totalPrice}}</td>
         <td class="actions" data-th="actions">
@@ -49,6 +57,7 @@
       </tfoot>
     </table>
   </div>
+  <div class='error toast' style='display:none'>Quantity exceeds available units</div>
   <script type="text/javascript">
   
   var app=angular.module('myApp',[]);
@@ -57,7 +66,12 @@
   $scope.cartAmount=0;
   $scope.update=function(id){
   var form=$(document).find('form[data-cart-item-id='+id+']');
-  $(form).submit();
+  if($(form).find('input[name=quantity]').val()<=$(form).find('input[name=quantity]').attr('max'))
+  	$(form).submit();
+  else{
+	 $('.toast').fadeIn(400).delay(3000).fadeOut(400);
+	 $(form).find('input[name=quantity]').parent('div').addClass('has-error');
+  }
   };
   $scope.delete=function(id){
   if(confirm("Do you really want to permanently remove this item from cart???")){

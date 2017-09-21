@@ -93,9 +93,9 @@ background-color: #f5f1ed;
 
 
 
-
+<div class="main-content" ng-app="myApp" ng-controller="myCtrl">
   
-<div class="main-content container" ng-app="myApp" ng-controller="myCtrl">
+<div class="container" >
 
 <h1 class="text-center heading">Checkout</h1>
   <table id="cart" class="table table-hover table-responsive">
@@ -145,7 +145,7 @@ background-color: #f5f1ed;
 
 
 
-<div class="main-content shipping-background">
+<div class="shipping-background">
 
 <div class="container-fluid">
  <div class="row"><label></label></div>
@@ -167,11 +167,9 @@ background-color: #f5f1ed;
               <form id="shipping-form" action="payment" method="post" role="form">
                 <h2>Please provide Shipping Address</h2>
 
-                  <div class="form-group">
-                    <input type="hidden" name="orderId" id="orderId" class="form-control" value="{{orderId}}">
-                  </div>
+                  
                  <div class="form-group"> 
-                  <select style="width:100%; height:35px;" id="howTo" name="howTo">
+                  <select style="width:100%; height:35px;" id="howTo" name="howTo" >
                     <option value="empty" disabled selected>Select one option</option>
                     <option value="given">Select from your addresses</option>
                     <option value="new">Add a new location</option>
@@ -181,11 +179,15 @@ background-color: #f5f1ed;
                         <option value="" selected disabled >Select Address</option>
                   </select>  
                  </div>   
-
+             </form>
               <div class="newAddress" id="newAddress" hidden>
+              
+              <form id="shipping-form" action="payment" method="post" role="form">
               <h2>Address details</h2>
                <div class="row">
                   <div class="col-md-12">
+                  
+                  <input type="hidden" name="howTo" >
                   <div class="form-group">
                     <textarea name="address" id="address" class="form-control" placeholder="Enter your address...." rows="3" value=""></textarea>
                   </div>
@@ -212,12 +214,16 @@ background-color: #f5f1ed;
                   <div class="col-sm-6 col-sm-offset-3">     
                         <input type="submit" name="shipping-submit" id="shipping-submit" class="form-control btn btn-shipping" value="Continue">
                   </div>
+                  
+                 </form> 
                 </div>
 
                 <div class="oldAddress" id="oldAddress" hidden>
+                <form id="shipping-form" action="payment" method="post" role="form">
               <h2>Address details</h2>
                <div class="row">
                   <div class="col-md-12">
+                  <input type="hidden" name="howTo" >
                   <div class="form-group">
                     <textarea name="address" id="address" class="form-control"  rows="3"  readonly>{{AddressLine}}</textarea>
                   </div>
@@ -225,7 +231,7 @@ background-color: #f5f1ed;
                </div>
 
                   <div class="form-group">
-                    <input type="hidden" name="existingAddressId" id="existingAddressId" class="form-control" placeholder="Selected Address Id" value="{{Id}}">
+                    <input type="hidden" name="id" id="existingAddressId" class="form-control" placeholder="Selected Address Id" value="{{Id}}">
                   </div>
 
                  <div class="row">
@@ -248,11 +254,13 @@ background-color: #f5f1ed;
                   <div class="col-sm-6 col-sm-offset-3">     
                         <input type="submit" name="shipping-submit" id="shipping-submit" class="form-control btn btn-shipping" value="Continue">
                   </div>
+                  
+                  </form>
                 </div>
 
                     
 
-              </form>
+              
               
             </div>
           </div>
@@ -263,19 +271,26 @@ background-color: #f5f1ed;
   </div>
 </div>
 </div>
+</div>
 <script>
 
     document.getElementById('howTo').onchange = function () {
     document.getElementById("choose").hidden = this.value == 'new' || this.value == 'empty';
     document.getElementById("newAddress").hidden = this.value == 'given' || this.value == 'empty';
     document.getElementById("oldAddress").hidden = this.value == 'new' || this.value == 'empty';
+    $('input[name=howTo]').val(this.value);
 }
 
 var app = angular.module('myApp', []);
 
  app.controller('myCtrl',function($scope){
- $scope.addressList = [{'city':'Delhi','country':'India','pin':'110036','id':'1','address':'helllo'}]/* ${addressList} */;
- //$scope.orderId= ${orderId};
+ 	<c:if test="${empty addressList}">
+	 $scope.addressList=[];
+ 	</c:if>
+ 	<c:if test="${not empty addressList}">
+	 $scope.addressList=${addressList};
+	</c:if>
+	 $scope.howTo="empty";
 
  $scope.BindSelectedData=function(addresss){
     $scope.Id=addresss.id

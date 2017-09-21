@@ -260,7 +260,7 @@ img {
       <p>{{item.description}}</p>
       <aside>
         <ul>
-          <li class="link"> <a href="productUser?name={{item.name}}">View more details</a></li>
+          <li class="link"> <a href="product?id={{item.id}}">View more details</a></li>
            
           <li ng-if="item.inStock != 0" class="in-stock">In Stock</li>
            

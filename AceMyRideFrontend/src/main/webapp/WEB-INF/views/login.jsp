@@ -278,7 +278,7 @@ background-color: #f5f1ed;
 <script>
 
 $(document).ready(function(){
-      var date_input=$('input[name="birthDate"]'); //our date input has the name "date"
+      var date_input=$('input[name="birthDate"]');
       var options={
         format: 'dd/mm/yyyy',
         todayHighlight: true,

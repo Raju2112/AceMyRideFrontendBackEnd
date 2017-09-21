@@ -65,6 +65,7 @@ public class UserOrderDaoImpl implements UserOrdersDao {
 	}
 
 	@Override
+	@Transactional
 	public UserOrders get(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.get(UserOrders.class, id);

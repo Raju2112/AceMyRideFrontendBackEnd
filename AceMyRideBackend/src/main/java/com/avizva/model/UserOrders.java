@@ -154,4 +154,14 @@ public class UserOrders {
 		this.orderDate = orderDate;
 	}
 
+	@Override
+	public String toString() {
+		return "UserOrders [id=" + id + ", billingAddress=" + billingAddress + ", billingAddressId=" + billingAddressId
+				+ ", shippingAddress=" + shippingAddress + ", shippingAddressId=" + shippingAddressId + ", user=" + user
+				+ ", userId=" + userId + ", payment=" + payment + ", items=" + items + ", orderStatus=" + orderStatus
+				+ ", orderAmount=" + orderAmount + ", orderDate=" + orderDate + "]";
+	}
+	
+	
+
 }

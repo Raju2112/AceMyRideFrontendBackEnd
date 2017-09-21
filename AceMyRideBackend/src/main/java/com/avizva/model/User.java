@@ -3,6 +3,7 @@ package com.avizva.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,8 +13,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 
 import com.avizva.pojo.UserType;
@@ -33,8 +36,9 @@ public class User {
 
 	@NotEmpty
 	private String name;
-
+	
 	@NotEmpty
+	@Column(unique=true)
 	private String email;
 
 	@NotEmpty
@@ -43,7 +47,7 @@ public class User {
 	@NotEmpty
 	private String contact;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user",cascade=CascadeType.ALL)
 	private List<Address> addresses;
 
 	@Temporal(TemporalType.DATE)
