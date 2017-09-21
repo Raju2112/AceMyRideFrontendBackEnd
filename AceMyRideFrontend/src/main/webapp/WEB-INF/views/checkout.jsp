@@ -164,7 +164,7 @@ background-color: #f5f1ed;
         <div class="panel panel-body">
           <div class="row">
             <div class="col-lg-12">
-              <form id="shipping-form" action="shippingSubmit" method="post" role="form">
+              <form id="shipping-form" action="payment" method="post" role="form">
                 <h2>Please provide Shipping Address</h2>
 
                   <div class="form-group">

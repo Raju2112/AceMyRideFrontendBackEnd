@@ -29,7 +29,7 @@ public interface UserService {
 	 *            The user to be updated
 	 * @return User the updated user object
 	 */
-	public User updateUser(User user);
+	public User updateUser(User user, User userById);
 
 	/**
 	 * Calls the dao to delete the user from database
@@ -82,5 +82,7 @@ public interface UserService {
 	 */
 	public User updateUserPasswordWithForgot(int userId, int securityQuestionId, String securityAnswer,
 			String password);
+
+
 
 }

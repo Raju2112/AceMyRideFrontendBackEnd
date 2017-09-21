@@ -182,7 +182,7 @@
 					<div class="col-sm-3">
 						<img src="${image}/emp5.jpg" class="category-image1">
 					</div>
-					<div id="data" class="col-sm-3">
+					<div class="col-sm-3 data">
 						<h4>Pay with AceMyRide</h4>
 						<hr class="lowerLine">
 						<ul>
@@ -194,7 +194,7 @@
 					<div class="col-sm-3">
 						<img src="${image}/emp6.jpg" class="category-image1">
 					</div>
-					<div id="data" class="col-sm-3">
+					<div class="col-sm-3 data">
 						<h4>Make money on your site</h4>
 						<hr class="lowerLine">
 						<ul>

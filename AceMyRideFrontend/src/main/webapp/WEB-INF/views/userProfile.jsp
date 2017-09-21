@@ -1,4 +1,7 @@
 <%@include file="header.jsp" %>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
 
 
   <style>
@@ -150,10 +153,6 @@ color: red;
           <div class="general menu-item" data-target="address">
             <i class="fa fa-map-marker" aria-hidden="true"></i>Manage Address
           </div>
-          <div class="general-without-border menu-item" data-target="payment">
-            <i class="fa fa-credit-card-alt" aria-hidden="true"></i>Payment
-            Options
-          </div>
           <c:if test="${userRole == 'ROLE_ADMIN'}">
 	        <div class="general menu-item" data-target="adminP">
 	            <i class="fa fa-columns" aria-hidden="true"></i>
@@ -176,7 +175,7 @@ color: red;
 
           <div class="content-head row">Your Info</div>
 
-          <form action="submitUpdate">
+          <form action="submitUpdate" method="post">
             <div class="view row">
               <div class="parameter col-md-3 text-left">Name</div>
               <div class="paramvalue col-md-6">${user.name}</div>
@@ -191,7 +190,7 @@ color: red;
               <div class="new-parameter col-sm-3 text-left">Enter new
                 name</div>
               <div class="new-paramvalue col-sm-6">
-                <input type="text" name="name">
+                <input type="text" name="name" placeholder="Enter Name">
               </div>
               <div class="new-edit-link col-sm-3 text-right">
                 <button type="submit" class="btn btn-primary">Update</button>
@@ -201,14 +200,37 @@ color: red;
                 <i class="fa fa-times" data-toggle="tooltip" title="Cancel"
                   aria-hidden="true"></i>
               </div>
+              </div>
+			<div class="view row">
+              <div class="parameter col-md-3 text-left">Date of Birth</div>
+              <div class="paramvalue col-md-6">${user.birthDate}</div>
+              <div class="edit-link col-md-3 text-right" >
+                <i class="fa fa-pencil" data-toggle="tooltip" data-target="editDob"
+                  title="Click to edit" aria-hidden="true"></i>
+              </div>
 
+            </div>
+			
+            <div class="update row" data-target="editDob">
+              <div class="new-parameter col-sm-3 text-left">Enter new
+                DOB</div>
+              <div class="new-paramvalue col-sm-6">
+                <input type="date"name="birthDate" id="dateBirth" placeholder="MM/DD/YYYY">
+              </div>
+              <div class="new-edit-link col-sm-3 text-right">
+                <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+              <div class="cancel-form col-md-3 text-right"
+                data-target="editDob">
+                <i class="fa fa-times" data-toggle="tooltip" title="Cancel"
+                  aria-hidden="true"></i>
+              </div>
             </div>
 
             <div class="view row">
               <div class="parameter col-sm-3 text-left">Contact</div>
               <div class="paramvalue col-sm-6">${user.contact}</div>
-              <div class="edit-link col-sm-3 text-right"
-                >
+              <div class="edit-link col-sm-3 text-right">
                 <i class="fa fa-pencil" data-toggle="tooltip" data-target="editContact"
                   title="Click to edit" aria-hidden="true"></i>
               </div>
@@ -218,7 +240,7 @@ color: red;
               <div class="new-parameter col-sm-3 text-left">Enter new
                 contact</div>
               <div class="new-paramvalue col-sm-6">
-                <input type="text" name="contact">
+                <input type="text" name="contact" placeholder="Enter Contact">
               </div>
               <div class="new-edit-link col-sm-3 text-right">
                 <button type="submit" class="btn btn-primary">Update</button>
@@ -237,7 +259,7 @@ color: red;
 
           <div class="content-head row">Change Password</div>
 
-          <form action="submitUpdate" onsubmit="return ComparePasswords()">
+          <form action="submitUpdate" onsubmit="return ComparePasswords()" method="post">
 
 
             <div class=" row ">
@@ -275,6 +297,161 @@ color: red;
 
           </form>
         </div>
+        
+        
+        
+        
+        
+        <div class="content-item" data-target="address">
+
+          <div class="content-heading">Manage Address</div>
+				<div>
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#addAddress">Add Address</button>
+				</div>
+				<!--Add address modal-->
+				<div class="modal fade" id="addAddress">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Add Address</h4>
+							</div>
+							<div class="modal-body">
+								<form action="addAddress" method="POST" id="addAddressForm">
+									<div class="form-group">
+										<label class="control-label">Address Line</label> 
+										<input type="text" name="address" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label class="control-label">City</label>
+										<input type="text" name="city" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Country</label>
+										<input type="text" name="country" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Pin</label>
+										<input type="text" name="pin" class="form-control" required>
+									</div>
+									<div class="form-group text-center">
+										<input type="submit" class="btn btn-success" required>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Update category modal-->
+				<div class="modal fade" id="updateAddress">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Update Address</h4>
+							</div>
+							<div class="modal-body">
+								<form action="updateAddress" method="POST">
+									<input type="hidden" name="id">
+									<div class="form-group">
+										<label class="control-label">Address Line</label> 
+										<input type="text" name="address" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label class="control-label">City</label>
+										<input type="text" name="city" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Country</label>
+										<input type="text" name="country" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Pin</label>
+										<input type="text" name="pin" class="form-control" required>
+									</div>
+									<div class="form-group text-center">
+										<input type="submit" class="btn btn-success" value="Update">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Delete Address modal-->
+				<div class="modal fade" id="deleteAddress">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Delete Address</h4>
+							</div>
+							<div class="modal-body">
+								<form action="deleteAddress" method="POST">
+									<input type="hidden" name="id">
+									<div class="form-group">
+										<label class="control-label">Address Line</label> 
+										<input type="text" name="address" class="form-control" readonly>
+									</div>
+									<div class="form-group">
+										<label class="control-label">City</label>
+										<input type="text" name="city" class="form-control" readonly>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Country</label>
+										<input type="text" name="country" class="form-control" readonly>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Pin</label>
+										<input type="text" name="pin" class="form-control" readonly>
+									</div>
+									<div class="form-group text-center">
+										<input type="submit" class="btn btn-success"
+											value="Confirm Delete">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<table class="table table-responsive table-hover">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Address Line</th>
+							<th>City</th>
+							<th>Country</th>
+							<th>Pin</th>
+							<th class="text-center">Operation</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${listAddress}" var="addresses" varStatus="i">
+							<tr>
+								<td data-id="${addresses.id}"><c:out value="${i.index+1}"></c:out>
+								</td>
+								<td data-address="${addresses.address}">${addresses.address}</td>
+								<td data-city="${addresses.city}">${addresses.city}</td>
+								<td data-country="${addresses.country}">${addresses.country}</td>
+								<td data-pin="${addresses.pin}">${addresses.pin}</td>
+								<td class="text-center">
+									<span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#updateAddress"></span>
+									<span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteAddress"></span>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			
+        
+        
+        
+        
+        
+        
+        
+        
         <c:if test="${userRole == 'ROLE_ADMIN'}">
 	        
         <div class="content-item" data-target="adminP">
@@ -364,6 +541,7 @@ color: red;
 
             $('.update').hide();
           });
+          
         });
 
 
@@ -388,6 +566,42 @@ color: red;
           return flag;
 
     }
+    
+    
+    $('#updateAddress').on(
+			'show.bs.modal',
+			function(event) {
+				var sibs = $(event.relatedTarget).parent().siblings('td');
+				$(this).find('input[name=id]').val($(sibs[0]).attr('data-id'));
+				$(this).find('input[name=address]').val($(sibs[1]).attr('data-address'));
+				$(this).find('input[name=city]').val($(sibs[2]).attr('data-city'));
+				$(this).find('input[name=country]').val($(sibs[3]).attr('data-country'));
+				$(this).find('input[name=pin]').val($(sibs[4]).attr('data-pin'));
+			});
+	$('#deleteAddress').on(
+			'show.bs.modal',
+			function(event) {
+				var sibs = $(event.relatedTarget).parent().siblings('td');
+				$(this).find('input[name=id]').val($(sibs[0]).attr('data-id'));
+				$(this).find('input[name=address]').val($(sibs[1]).attr('data-address'));
+				$(this).find('input[name=city]').val($(sibs[2]).attr('data-city'));
+				$(this).find('input[name=country]').val($(sibs[3]).attr('data-country'));
+				$(this).find('input[name=pin]').val($(sibs[4]).attr('data-pin'));
+			});
+	
+	var addressIdList = new Array();
+	<c:forEach items="${listAddresses}" var="addresses">
+	addressIdList.push("${addresses.id}")
+	</c:forEach>
+	
+	
+	$('#addAddressForm').submit(function(event) {
+		var catId = $(this).find('[name=categoryId]').val();
+		if ($.inArray(catId, categoryIdList) > 0) {
+			event.preventDefault();
+			alert('Category id already saved');
+		}
+	});
   </script>
 
 <%@include file="footer.jsp" %>

@@ -44,7 +44,7 @@
         <td><a href="#" class="btn btn-warning"><i class="glyphicon glyphicon-chevron-left"></i> Continue Shopping</a></td>
         <td colspan="2" class="hidden-xs"></td>
         <td class="hidden-xs text-center price"><strong>Total &#8377; {{cartAmount}}</strong></td>
-        <td><a href="#" class="btn btn-success btn-block">Checkout <i class="glyphicon glyphicon-chevron-right"></i></a></td>
+        <td><a href="checkout" class="btn btn-success btn-block">Checkout <i class="glyphicon glyphicon-chevron-right"></i></a></td>
       </tr>
       </tfoot>
     </table>

@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.avizva.model.User;
 import com.avizva.pojo.SecurityQuestions;
 import com.avizva.pojo.UserType;
+import com.avizva.service.AddressService;
 import com.avizva.service.MailService;
 import com.avizva.service.UserService;
 
@@ -33,6 +34,9 @@ public class UserController {
 	@Autowired
 	private MailService mailService;
 
+	@Autowired
+	private AddressService addressService;
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
@@ -43,7 +47,7 @@ public class UserController {
 	public ModelAndView showUser(HttpSession session) {
 		int id=(Integer) session.getAttribute("userId");
 		session.setAttribute("user", userService.getUser(id));
-		return new ModelAndView("userProfile");
+		return new ModelAndView("userProfile").addObject("listAddress", addressService.getActiveAddresssByUserId(id));
 	}
 
 	@RequestMapping("/userDeactivate")
@@ -53,11 +57,14 @@ public class UserController {
 	
 	
 	@RequestMapping(value="/submitUpdate", method = RequestMethod.POST)
-	public ModelAndView submitUpdate(HttpSession session,@ModelAttribute User user) {
-		User updatedUser=userService.updateUser(user);
+	public ModelAndView submitUpdate(HttpSession session, @ModelAttribute User userNew, BindingResult result) {
+		
+		int id = (Integer) session.getAttribute("userId");
+		User userById = userService.getUser(id);
+		User updatedUser = userService.updateUser(userNew, userById);
 		
 		session.setAttribute("user", updatedUser);
-		return new ModelAndView("userProfile");
+		return new ModelAndView("redirect:/profile");
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)

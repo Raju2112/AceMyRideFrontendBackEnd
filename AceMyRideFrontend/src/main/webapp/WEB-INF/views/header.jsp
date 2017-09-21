@@ -57,7 +57,7 @@
 						
 					</c:if>
 					<c:if test="${isLoggedIn}">
-				     <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+				     <li><a href="cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
               			<li><a href="profile">Hi, <c:out value="${userName}"></c:out></a></li>
 
                		<li><a href="userLogout"><span class="glyphicon glyphicon-user"></span>Logout</a></li>

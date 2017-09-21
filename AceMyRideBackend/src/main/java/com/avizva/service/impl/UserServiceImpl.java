@@ -24,13 +24,26 @@ public class UserServiceImpl implements UserService {
 		return savedUser;
 	}
 
-	public User updateUser(User user) {
-		LOGGER.info("Updating user with email " + user.getId());
-		User updatedUser = userDao.update(user);
-		LOGGER.info("User updated " + user.getId());
-		updatedUser=userDao.userWithAddresses(updatedUser);
+	public User updateUser(User userNew, User userById) {
+
+
+		if (!userNew.getName().equals("")) {
+			userById.setName(userNew.getName());
+		}
+		if (!userNew.getContact().equals("")) {
+			userById.setContact(userNew.getContact());
+		}
+		if (userNew.getBirthDate() != null) {
+			userById.setBirthDate(userNew.getBirthDate());
+		}
+
+		LOGGER.info("Updating user with email " + userNew.getId());
+		User updatedUser = userDao.update(userById);
+		LOGGER.info("User updated " + userNew.getId());
+		updatedUser = userDao.userWithAddresses(updatedUser);
 		return updatedUser;
 	}
+
 
 	public boolean deleteUser(int id) {
 		LOGGER.info("Deleting user with id " + id);
@@ -72,5 +85,6 @@ public class UserServiceImpl implements UserService {
 		LOGGER.info("Invalid user authentication for changing password");
 		return null;
 	}
+
 
 }
