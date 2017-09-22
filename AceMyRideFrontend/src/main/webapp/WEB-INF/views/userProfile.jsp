@@ -57,6 +57,7 @@ color: red;
 }
 
 .content-head {
+margin-top:10px;
   font-size: 22px;
   color: black;
   background-color: #C2D8D6;
@@ -124,7 +125,6 @@ color: red;
 
 .passForm {
   padding-left: 30px;
-  background-color: white;
   border-bottom-style: solid;
   border-bottom-width: 0.5px;
   border-bottom-color: #BBC2C1;
@@ -173,7 +173,7 @@ color: red;
 		
         <div class="content-item active" data-target="details">
 
-          <div class="content-head row">Your Info</div>
+          <div class="content-head row">YOUR INFORMATION</div>
 
           <form action="submitUpdate" method="post">
             <div class="view row">
@@ -297,6 +297,69 @@ color: red;
 
           </form>
         </div>
+        <div class="content-item" data-target="orders">
+        	<div class="content-head row">YOUR ORDERS</div>
+        		<%-- <c:forEach items="${orderList}" var="order">
+					<div class="product-card col-sm-8 col-sm-offset-2">
+						<div class="card-block row">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-9">
+								Order Id:<h4 class="card-title" data-name="${order.id }">${order.id }</h4>
+								Order Date: <h6 class="card-subtitle mb-2 text-muted"
+									data-productId="${order.date }">${order.orderDate }</h6>
+								<p>
+									Payment Method: <span class="font-weight-bold"
+										data-order="${order.payment}">${order.payment}</span>
+									&nbsp; 	
+									Total Amount: <span class="font-weight-bold"
+										data-amount="${order.orderAmount }"> ${order.orderAmount}</span>
+								</p>
+								
+								<p>
+									Order Status: <span class="font-weight-bold"
+										data-status="${order.orderStatus}">${order.orderStatus}</span>
+									
+								</p>
+								<p class="shippinhAddress">
+									Shipping Address: <span class="text-muted"
+										data-shippinhAddress="${order.shippingAddress}">${order.shippingAddress}</span>
+								</p>
+								
+							</div>
+						</div>
+					</div>
+				</c:forEach> --%>
+				<table class="table table-responsive table-hover">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Order Id</th>
+							<th>Total Amount</th>
+							<!-- <th>Payment Method</th> -->
+							<th>Order Status</th>
+							<th>Shipping Address</th>
+							<c:if test="${order.orderStatus eq IN_PROCESS}">
+									<th>Operation</th>
+							</c:if>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${orderList}" var="order" varStatus="i">
+							<tr>
+								<td data-id="index"><c:out value="${i.index+1}"></c:out></td>
+								<td data-address="${order.id}">${order.id}</td>
+								<td data-city="${order.orderAmount}">${order.orderAmount}</td>
+								<%-- <td data-country="${order.payment}">${order.payment}</td> --%>
+								<td data-country="${order.orderStatus}">${order.orderStatus}</td>
+								<td data-shippingAddress="${order.shippingAddress }">${order.shippingAddress.address }, ${order.shippingAddress.city }, ${order.shippingAddress.country }-${order.shippingAddress.pin }</td>
+								<c:if test="${order.orderStatus eq IN_PROCESS}">
+									<td data-continuePayment>Continue Payment</td>
+								</c:if>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+        	</div>
         
         
         
@@ -304,7 +367,7 @@ color: red;
         
         <div class="content-item" data-target="address">
 
-          <div class="content-heading">Manage Address</div>
+          <div class="content-head row">Your Info</div>
 				<div>
 					<button type="button" class="btn btn-primary" data-toggle="modal"
 						data-target="#addAddress">Add Address</button>
@@ -443,13 +506,7 @@ color: red;
 					</tbody>
 				</table>
 			</div>
-			
-        
-        
-        
-        
-        
-        
+		
         
         
         <c:if test="${userRole == 'ROLE_ADMIN'}">
@@ -486,9 +543,9 @@ color: red;
 
 		</div>
       </div>
-    </div>
-  </div>
-
+   </div>
+ 
+</div>
 
 
 
@@ -601,7 +658,15 @@ color: red;
 			event.preventDefault();
 			alert('Category id already saved');
 		}
+		
+		
+		var orderIdList = new Array();
+		<c:forEach items="${orderList}" var="order">
+		orderIdList.push("${order.id}")
+		</c:forEach>
 	});
+	
+	
   </script>
 
 <%@include file="footer.jsp" %>

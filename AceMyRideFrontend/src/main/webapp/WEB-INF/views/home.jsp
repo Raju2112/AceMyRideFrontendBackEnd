@@ -10,7 +10,7 @@
 
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="${image}/slideshow-image1.jpg" >
+					`<img src="${image}/slideshow-image1.jpg" >
 				</div>
 
 				<div class="item">
@@ -43,7 +43,7 @@
 			<div class="categories">
 				<div class="category-row">
 					<div class="category">
-						<img src="${image}/helmets.png" class="category-image">
+						<a href="aboutUs"><img src="${image}/helmets.png" class="category-image"></a>
 						<div class="category-discription">
 							<div class="category-title">
 								Helmets
@@ -54,7 +54,7 @@
 						</div>
 					</div>
 					<div class="category">
-						<img src="${image}/indicators.jpg" class="category-image">
+						<a href="aboutUs"><img src="${image}/indicators.jpg" class="category-image"></a>
 						<div class="category-discription">
 							<div class="category-title">
 								Indicators
@@ -65,7 +65,7 @@
 						</div>
 					</div>
 					<div class="category">
-						<img src="${image}/helmets.png" class="category-image">
+						<a href="aboutUs"><img src="${image}/helmets.png" class="category-image"></a>
 						<div class="category-discription">
 							<div class="category-title">
 								Helmets
@@ -76,7 +76,7 @@
 						</div>
 					</div>
 					<div class="category">
-						<img src="${image}/helmets.png" class="category-image">
+						<a href="aboutUs"><img src="${image}/helmets.png" class="category-image"></a>
 						<div class="category-discription">
 							<div class="category-title">
 								Helmets
@@ -87,7 +87,7 @@
 						</div>
 					</div>
 					<div class="category">
-						<img src="${image}/helmets.png" class="category-image">
+						<a href="aboutUs"><img src="${image}/helmets.png" class="category-image"></a>
 						<div class="category-discription">
 							<div class="category-title">
 								Helmets
@@ -98,7 +98,7 @@
 						</div>
 					</div>
 					<div class="category">
-						<img src="${image}/helmets.png" class="category-image">
+						<a href="categoryUser?name=Casual Shoes"><img src="${image}/helmets.png" class="category-image"></a>
 						<div class="category-discription">
 							<div class="category-title">
 								Helmets

@@ -49,6 +49,26 @@ public class IndexController {
 	}
 	
 	/**
+	 * Method to return return the product page
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/return")
+	public ModelAndView showReturn() {
+		return new ModelAndView("return");
+	}
+
+	/**
+	 * Method to return purchase protection page
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/purchaseProtection")
+	public ModelAndView showProtection() {
+		return new ModelAndView("purchaseProtection");
+	}
+
+	/**
 	 * Method to return contact us page
 	 * 
 	 * @return

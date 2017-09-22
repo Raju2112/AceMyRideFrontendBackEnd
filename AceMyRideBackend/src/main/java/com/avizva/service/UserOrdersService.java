@@ -1,5 +1,7 @@
 package com.avizva.service;
 
+import java.util.List;
+
 import com.avizva.model.Address;
 import com.avizva.model.Payment;
 import com.avizva.model.UserOrders;
@@ -13,5 +15,7 @@ public interface UserOrdersService {
 	public UserOrders saveOrder(int userID, Address shippingAddress, boolean isNew);
 	
 	public UserOrders getUserOrder(int id);
+
+	public List<UserOrders> getOrderList(int userId);
 
 }

@@ -97,18 +97,21 @@
 						<img src="${image}/Raju.jpg" class="category-image2">
 					</div>
 				</div>
+				<hr style="border-bottom-width: 3px; border-color: black;">
 				<div class="row">
+				<div class="col-sm-6">
+						<img src="${image}/pratyaksh.jpeg" class="category-image2">
+					
+					</div>
 					<div class="col-sm-6 data" >
 						<h4>Pratyaksh Kumar: Deep Diving in Dangerous Domains</h4>
 						<hr class="lowerLine">
 						<h5>"Looking back, I realise that it was my formative years with the defence forces that led me to my passion in life—in a larger field of ensuring compliance, safety and security for men, material and the environment.” – Pratyaksh Kumar</h5>
 						<p>Pratyaksh is a certified Airline Safety Auditor; and has carried out DG safety for multiple airlines till date. In his current role as a Program Manager for the Safety and Security team at AceMyRide India, he brings exactly this knowledge and experience as a subject matter expert into the organization’s security and compliance arena.</p>
 					</div>
-					<div class="col-sm-6">
-						<img src="${image}/pratyaksh.jpeg" class="category-image2">
 					
-					</div>
 				</div>
+				<hr style="border-bottom-width: 3px; border-color: black;">
 				<div class="row">
 					<div class="col-sm-6 data" >
 						<h4 >Prateek Kumar: Smart thinking make us to face challanges</h4>

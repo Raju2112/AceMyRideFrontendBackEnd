@@ -23,6 +23,8 @@ import com.avizva.pojo.SecurityQuestions;
 import com.avizva.pojo.UserType;
 import com.avizva.service.AddressService;
 import com.avizva.service.MailService;
+import com.avizva.service.ProductService;
+import com.avizva.service.UserOrdersService;
 import com.avizva.service.UserService;
 
 @Controller
@@ -32,10 +34,16 @@ public class UserController {
 	private UserService userService;
 
 	@Autowired
+	UserOrdersService userOrderService;
+
+	@Autowired
 	private MailService mailService;
 
 	@Autowired
 	private AddressService addressService;
+
+	@Autowired
+	private ProductService productService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -45,9 +53,13 @@ public class UserController {
 
 	@RequestMapping("/profile")
 	public ModelAndView showUser(HttpSession session) {
-		int id=(Integer) session.getAttribute("userId");
+		if (session.getAttribute("userId") == null) {
+			return new ModelAndView("redirect:/login").addObject("message", "Please Loginfirst");
+		}
+		int id = (Integer) session.getAttribute("userId");
 		session.setAttribute("user", userService.getUser(id));
-		return new ModelAndView("userProfile").addObject("listAddress", addressService.getActiveAddresssByUserId(id));
+		return new ModelAndView("userProfile").addObject("listAddress", addressService.getActiveAddresssByUserId(id))
+				.addObject("orderList", userOrderService.getOrderList(id));
 	}
 
 	@RequestMapping("/userDeactivate")

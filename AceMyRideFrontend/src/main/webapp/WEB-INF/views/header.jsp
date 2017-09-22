@@ -41,7 +41,7 @@
 			</div>
 			<nav class="menu">
 				<ul class="clearfix">
-					
+					<li><a href="./">Home</a></li>
 					<li><a>Categories<span class="arrow">&#9660;</span></a>
 							<ul class="sub-menu">
 								<c:forEach var="x" items="${listOfCategories}">
@@ -49,7 +49,7 @@
 								</c:forEach>
 							</ul>
 					</li>
-					<li class="active"><a href="./">Home</a></li>
+					
 					<li><a href="aboutUs">About Us</a></li>
 					<li><a href="contactUs">Contact Us</a></li>
 					<c:if test="${empty isLoggedIn}">

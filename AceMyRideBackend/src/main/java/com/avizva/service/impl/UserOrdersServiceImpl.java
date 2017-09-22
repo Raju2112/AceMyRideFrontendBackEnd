@@ -94,4 +94,9 @@ public class UserOrdersServiceImpl implements UserOrdersService {
 		return userOrdersDao.get(id);
 	}
 
+	public List<UserOrders> getOrderList(int userId) {
+		return userOrdersDao.getUserOrders(userId);
+
+	}
+
 }
